@@ -30,6 +30,11 @@ jobs:
           uses: actions/setup-node@v3
           with:
             node-version: ${{ matrix.nodejs_version }}
+        - name: Cache NPM modules
+          uses: actions/cache@v4
+          with:
+            path: node_modules
+            key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
     
         - name: Install Dependencies
           run: npm install
@@ -59,7 +64,12 @@ jobs:
 
         - name: Install Dependencies
           run: npm install
-    
+          
+        - name: Cache NPM modules
+          uses: actions/cache@v4
+          with:
+            path: node_modules
+            key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
 
         - name: Check Code Coverage
           continue-on-error: true
