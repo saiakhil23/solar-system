@@ -39,7 +39,7 @@ jobs:
           run: npm test
 
         - uses: actions/upload-artifact@v4
-          if: failure() 
+          if: always() 
           name: Archive Test Result
           with:
             name: Mocha-Test-Result-${{ matrix.nodejs_version }}-${{ matrix.operating_system }}
