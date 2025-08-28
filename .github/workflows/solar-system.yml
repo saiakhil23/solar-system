@@ -61,15 +61,15 @@ jobs:
           uses: actions/setup-node@v3
           with:
             node-version: 18
-
-        - name: Install Dependencies
-          run: npm install
-          
+            
         - name: Cache NPM modules
           uses: actions/cache@v4
           with:
             path: node_modules
             key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
+
+        - name: Install Dependencies
+          run: npm install
 
         - name: Check Code Coverage
           continue-on-error: true
