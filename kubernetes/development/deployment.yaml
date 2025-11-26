@@ -4,9 +4,8 @@ metadata:
   labels:
     app: solar-system
   name: solar-system
-  namespace: _{_NAMESPACE_}_
 spec:
-  replicas: _{_REPLICAS_}_
+  replicas: 3
   selector:
     matchLabels:
       app: solar-system
@@ -17,13 +16,8 @@ spec:
         app: solar-system
     spec:
       containers:
-      - image: _{_IMAGE_}_
-        imagePullPolicy: Always
+      - image: siddharth67/solar-system:v9
         name: solar-system
-        ports:
-        - containerPort: 3000
-          name: http
-          protocol: TCP
-        envFrom:
-        - secretRef:
-            name: mongo-db-creds
+        imagePullPolicy: Always
+        ports: 
+        - containerPort: 80
